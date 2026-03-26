@@ -22,6 +22,7 @@ test_ctrf_fail_if_not_a_ctrf if {
   }
 
   violation[v] with input as inp
+  v.id == "ctrf_report_unparsable"
   v.remarks == "File isn't a valid CTRF report."
 }
 
@@ -41,6 +42,7 @@ test_ctrf_fail_if_json_not_a_ctrf if {
   }
 
   violation[v] with input as inp
+  v.id == "ctrf_report_invalid"
   v.remarks == "File isn't a valid CTRF report."
 }
 
@@ -96,5 +98,6 @@ test_violation_when_error_and_file_exists if {
   }
 
   violation[v] with input as inp
+  v.id == "ctrf_report_failed_tests"
   v.remarks == "CTRF report contains at least one failed test"
 }

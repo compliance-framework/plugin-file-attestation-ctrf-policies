@@ -4,3 +4,7 @@ lisa-design:
 - No version.txt added by hand; release-please adds it in the first release PR (release-type simple).
 - release.yml keeps opa-version "1.14.1" and directory policies: the bundle stays built from policies/ only (digest is evidence provenance). Old `opa build -b policies -o` and shared `opa build --bundle policies --output` give byte-identical tarballs with OPA 1.14.1.
 - README untouched: it covers testing/make build, not releasing.
+
+lisa-selfreview:
+- pass 1 (approve): no blocker/must-fix/should-fix. CORE-CI-001 checked: every shared workflow pinned to 6e7fc9c # v1.5.2, top-level permissions contents: read, packages: write only on release/preview jobs.
+- Question (CORE-XREPO-001, unclear): the GitHub release no longer carries bundle.tar.gz; the agent pulls from OCI. Does anything consume the release asset? Listed under open questions in the PR body.

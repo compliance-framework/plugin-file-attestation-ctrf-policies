@@ -1,0 +1,6 @@
+lisa-design:
+- ci.yml is a verbatim copy of compliance-framework/mock-plugin-policies-1 .github/workflows/ci.yml (workflows v1.5.1, 7b55019e); no `directory` input because the policies live in policies/.
+- No repo Regal config is added: CI uses the shared base config from compliance-framework/workflows at the pinned SHA, and the tree lints clean (0 errors, 0 warnings) against it.
+- `violation[...] if` stays a partial object rule (Rego v1 without `contains`); switching to `violation contains` would change the evaluated output shape, so it is listed as an open question instead. The API's policyeval accepts both shapes.
+- Tests iterate `some v, _ in violation` (object keys), which is exactly what `violation[v]` did; a mutation of a remark still fails the test suite.
+- Policy behaviour verified unchanged: rule ASTs equal as a multiset vs main, and data.compliance_framework.ctrf_errors evaluates identically for 11 sample inputs.

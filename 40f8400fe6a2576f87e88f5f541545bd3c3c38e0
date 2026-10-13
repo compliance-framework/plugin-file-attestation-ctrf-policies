@@ -4,3 +4,7 @@ lisa-design:
 - `violation[...] if` stays a partial object rule (Rego v1 without `contains`); switching to `violation contains` would change the evaluated output shape, so it is listed as an open question instead. The API's policyeval accepts both shapes.
 - Tests iterate `some v, _ in violation` (object keys), which is exactly what `violation[v]` did; a mutation of a remark still fails the test suite.
 - Policy behaviour verified unchanged: rule ASTs equal as a multiset vs main, and data.compliance_framework.ctrf_errors evaluates identically for 11 sample inputs.
+
+lisa-selfreview:
+- Pass 1 (strict): verdict approve, no findings on the branch diff. Checked CORE-CI-001 (reusable workflows SHA-pinned, top-level permissions: {}, no checkout in the caller), CORE-VERIFY-001 (opa fmt/check --strict/test/build and regal lint with the shared config all pass on OPA 1.14.1 / Regal 0.43.0; actionlint v1.7.12 clean), CORE-TEST-002 (mutating a remark fails the suite, so the rewritten assertions still bite).
+- Pre-existing, out of scope (behaviour or scope change, listed in the PR body instead): REGO-PKG-001 package `compliance_framework.ctrf_errors` vs file stem `file_ctrf_errors`; REGO-META-001 no METADATA block; REGO-TEST-001 no passing (no-violation) tests for the three violation rules; REGO-NEG-001/INPUT-001 bare `input.path`/`input.exists`/`input.content`; `violation[...] if` is a partial object rule rather than `violation contains`; Makefile `validate` runs `opa check` without --strict.

@@ -1,0 +1,6 @@
+lisa-design:
+- Callers copied from mock-plugin-policies-1 (identical to the reviewed plugin-file-attestation-policies#4), every pin moved to 6e7fc9c # v1.5.2; default branch is main, so push triggers use [main].
+- Manifest seeded at 0.2.0 = releases/latest (v0.2.0, final); its tag commit is an ancestor of main, so no bootstrap-sha.
+- No version.txt added by hand; release-please adds it in the first release PR (release-type simple).
+- release.yml keeps opa-version "1.14.1" and directory policies: the bundle stays built from policies/ only (digest is evidence provenance). Old `opa build -b policies -o` and shared `opa build --bundle policies --output` give byte-identical tarballs with OPA 1.14.1.
+- README untouched: it covers testing/make build, not releasing.
